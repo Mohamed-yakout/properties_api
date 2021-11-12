@@ -29,7 +29,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'activerecord-postgres-earthdistance'
 
 # Use Active Model Serializers for data serialization
-gem 'active_model_serializers', '~> 0.9.5'
+gem 'active_model_serializers', '~> 0.10.0.rc1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
