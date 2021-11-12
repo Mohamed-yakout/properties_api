@@ -1,6 +1,4 @@
 class PropertiesController < ApplicationController
-  before_action :set_property, only: [:show, :update, :destroy]
-
   # GET /properties
   def index
     @properties = Property.filter(property_filter_params).filter_by_location(location_filter_params)
