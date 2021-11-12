@@ -47,6 +47,10 @@ GEM
     activerecord (6.1.4.1)
       activemodel (= 6.1.4.1)
       activesupport (= 6.1.4.1)
+    activerecord-postgres-earthdistance (0.7.2)
+      activerecord (>= 3.1)
+      pg
+      rake
     activestorage (6.1.4.1)
       actionpack (= 6.1.4.1)
       activejob (= 6.1.4.1)
@@ -147,6 +151,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-postgres-earthdistance
   bootsnap (>= 1.4.4)
   byebug
   listen (~> 3.3)
