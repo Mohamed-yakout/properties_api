@@ -3,7 +3,7 @@ class PropertiesController < ApplicationController
 
   # GET /properties
   def index
-    @properties = Property.all
+    @properties = Property.filter(property_filter_params).filter_by_location(location_filter_params)
 
     render json: @properties
   end
@@ -47,5 +47,15 @@ class PropertiesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def property_params
       params.fetch(:property, {})
+    end
+
+    # location params is mandatory in filter
+    def location_filter_params
+      params.slice(:lat, :lng)
+    end
+
+    # other property attributes is optional
+    def property_filter_params
+      params.slice(:property_type, :marketing_type, :offer_type)
     end
 end
