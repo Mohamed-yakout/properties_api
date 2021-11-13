@@ -27,16 +27,11 @@ class PropertiesController < ApplicationController
     # location params as mandatory params
     # type params as optional params
     def check_search_params
-      filters = [Validate::FilterLocation.new(params), Validate::FilterType.new(params)]
-      errors = {}
-      filters.each do |filter|
-        unless filter.valid?
-          errors[filter.class] = filter.errors
-        end
-      end
+      full_validation = Validate::FullValidation.new(params)
 
-      unless errors.blank?
-        render json: { errors: errors }, status: :unprocessable_entity
+      unless full_validation.valid?
+        render json: { errors: full_validation.errors }, status: :unprocessable_entity
+        return
       end
     end
 end
