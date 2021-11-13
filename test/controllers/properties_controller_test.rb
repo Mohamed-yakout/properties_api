@@ -7,32 +7,36 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     get properties_url, as: :json
+    assert_response :unprocessable_entity
+  end
+
+  test "should get index with location params" do
+    get "#{properties_url}?lng=13.4236807&lat=52.5342963", as: :json
     assert_response :success
   end
 
-  test "should create property" do
-    assert_difference('Property.count') do
-      post properties_url, params: { property: {  } }, as: :json
-    end
-
-    assert_response 201
-  end
-
-  test "should show property" do
-    get property_url(@property), as: :json
+  test "should get index with location and property_type filter" do
+    get "#{properties_url}?lng=13.4236807&lat=52.5342963&property_type=apartment", as: :json
     assert_response :success
   end
 
-  test "should update property" do
-    patch property_url(@property), params: { property: {  } }, as: :json
-    assert_response 200
+  test "should get index with location and type filter" do
+    get "#{properties_url}?lng=13.4236807&lat=52.5342963&property_type=apartment&marketing_type=sell", as: :json
+    assert_response :success
   end
 
-  test "should destroy property" do
-    assert_difference('Property.count', -1) do
-      delete property_url(@property), as: :json
-    end
+  test "should get index with wrong property_type filter" do
+    get "#{properties_url}?lng=13.4236807&lat=52.5342963&property_type=apartment&marketing_type=AAA", as: :json
+    assert_response :unprocessable_entity
+  end
 
-    assert_response 204
+  test "should get index with wrong marketing_type filter" do
+    get "#{properties_url}?lng=13.4236807&lat=52.5342963&property_type=AAA&marketing_type=sell", as: :json
+    assert_response :unprocessable_entity
+  end
+
+  test "should get index with blank results" do
+    get "#{properties_url}?lng=130.4236807&lat=5200.5342963&property_type=apartment&marketing_type=sell", as: :json
+    assert_response :not_found
   end
 end

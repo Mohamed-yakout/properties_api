@@ -27,4 +27,13 @@ class Property < ApplicationRecord
   scope :filter_by_location, -> (location) {
     near(location[:lat], location[:lng])
   }
+
+  def distance_to_other_property other_property
+    select("earth_distance(ll_to_earth(#{self.lat}, #{self.lng}), ll_to_earth(#{other_property.lat}, #{other_property.lng}))").where(id: self.id).first.distance
+  end
+
+  # this instance method to calculate the distance in meters
+  def distance_to_location location
+    Property.select("earth_distance(ll_to_earth(#{self.lat}, #{self.lng}), ll_to_earth(#{location[:lat]}, #{location[:lng]})) as distance").where(id: self.id).first.distance
+  end
 end

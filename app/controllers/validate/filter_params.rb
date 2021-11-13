@@ -4,7 +4,7 @@ module Validate
 
     attr_accessor :search_params
 
-    FILTER_PARAMS_KEYS = %w(lat lng property_type marketing_type offer_type action controller page)
+    FILTER_PARAMS_KEYS = %w(lat lng property_type marketing_type offer_type action controller page property)
 
     validate :valid_search_params
 
@@ -14,7 +14,7 @@ module Validate
     end
 
     def valid_search_params
-      puts @search_params.keys
+      # puts @search_params.keys
       puts @search_params.keys - FILTER_PARAMS_KEYS
 
       unless (@search_params.keys - FILTER_PARAMS_KEYS).blank?
