@@ -1,0 +1,37 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one:
+  id: 1
+  house_number: 36
+  lng: 13.4224666
+  lat: 52.5346344
+  offer_type: sell
+  property_type: apartment
+  zip_code: 10405
+  city: Berlin
+  street: Prenzlauer Allee
+  price: 239500.0
+# column: value
+#
+two:
+  id: 2
+  lng: 13.4225659
+  lat: 52.5327964
+  price: 142900.0
+  zip_code: 10405
+  offer_type: sell
+  property_type: apartment
+  city: Berlin
+three:
+  id: 3
+  lng: 15.4225659
+  lat: 66.5327964
+  price: 142900.0
+  zip_code: 10405
+  offer_type: sell
+  property_type: apartment
+  city: Berlin
