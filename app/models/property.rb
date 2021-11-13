@@ -1,4 +1,6 @@
 class Property < ApplicationRecord
+  include Filterable
+
   acts_as_geolocated
 
   MAX_RADIUS_METERS = 5.0 * 1000.0
@@ -25,12 +27,4 @@ class Property < ApplicationRecord
   scope :filter_by_location, -> (location) {
     near(location[:lat], location[:lng])
   }
-
-  def self.filter(filter_params)
-    records = self
-    filter_params.each do |field_name, value|
-      records = records.send("filter_by_#{field_name}", value) if value.present?
-    end
-    records
-  end
 end
